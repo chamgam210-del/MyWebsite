@@ -22,7 +22,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
         <Link href="/" className="group flex items-baseline gap-2">
           <span className="font-serif text-xl italic leading-none text-ink">
-            Chamath
+            Chamath Guruge
           </span>
           <span className="hidden font-mono text-[10px] uppercase tracking-widest text-ink-mute sm:inline">
             software · ai

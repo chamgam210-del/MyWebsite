@@ -36,7 +36,7 @@ export default function HomePage() {
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
             <span className="inline-flex items-center gap-2">
               <span className="inline-flex h-1.5 w-1.5 animate-pulseSoft rounded-full bg-accent" />
-              Available · AI / Mobile / Automation
+              Markham, ON · Software Engineer II @ Oliver Wyman Vector
             </span>
           </div>
 
@@ -45,18 +45,18 @@ export default function HomePage() {
           </h1>
 
           <div className="mt-6 text-2xl text-ink-dim sm:text-3xl">
-            <TypedText words={["a Software Developer", "an AI Builder", "an Android Engineer", "an Automation Hacker"]} />
+            <TypedText words={["a Software Engineer", "an AI Builder", "a Full-Stack Developer", "an Automation Hacker"]} />
           </div>
 
           <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-dim sm:text-lg">
-            I build practical software that turns ideas into working products —
-            AI assistants, Android apps, automation tools, RAG systems, and
-            voice-first experiences.
+            Software Engineer II at <span className="text-ink">Oliver Wyman Vector</span> —
+            building full-stack web apps in Java, Spring Boot, and React, and integrating
+            generative AI into how engineering teams ship software.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <ButtonLink href="/projects" icon>View Work</ButtonLink>
-            <ButtonLink href="/resume.pdf" external variant="secondary">
+            <ButtonLink href="/resume" variant="secondary">
               <Download className="h-4 w-4" />
               Resume
             </ButtonLink>

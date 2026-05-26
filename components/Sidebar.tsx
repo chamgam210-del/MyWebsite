@@ -11,7 +11,6 @@ import {
   Mail,
   Github,
   Linkedin,
-  Twitter,
   Menu,
   X,
 } from "lucide-react";
@@ -20,15 +19,15 @@ import { clsx } from "@/lib/cn";
 const links = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: User },
-  { href: "/resume.pdf", label: "Resume", icon: FileText, external: true },
+  { href: "/resume", label: "Resume", icon: FileText },
   { href: "/projects", label: "Portfolio", icon: Briefcase },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
 
 const socials = [
-  { href: "https://twitter.com/", icon: Twitter, label: "Twitter" },
-  { href: "https://github.com/", icon: Github, label: "GitHub" },
-  { href: "https://www.linkedin.com/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/chamath-guruge/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://github.com/chamgam210-del", icon: Github, label: "GitHub" },
+  { href: "mailto:chamath@example.com", icon: Mail, label: "Email" },
 ];
 
 export default function Sidebar() {
@@ -40,7 +39,7 @@ export default function Sidebar() {
       {/* Mobile top bar */}
       <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-white/[0.06] bg-bg/90 px-5 py-3 backdrop-blur lg:hidden">
         <Link href="/" className="font-serif text-xl italic text-ink">
-          Chamath
+          Chamath Guruge
         </Link>
         <button
           onClick={() => setOpen((o) => !o)}
@@ -84,10 +83,13 @@ export default function Sidebar() {
 
         <div className="text-center">
           <div className="font-serif text-2xl italic leading-tight tracking-tightest text-ink">
-            Chamath
+            Chamath Guruge
           </div>
           <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            Software · AI
+            Software Engineer · AI
+          </div>
+          <div className="mt-1 font-mono text-[9px] uppercase tracking-widest text-ink-mute/70">
+            Markham, ON
           </div>
         </div>
 
@@ -111,11 +113,10 @@ export default function Sidebar() {
         <nav className="mt-2 w-full">
           <ul className="flex flex-col">
             {links.map((l) => {
-              const active = l.external
-                ? false
-                : l.href === "/"
-                ? pathname === "/"
-                : pathname?.startsWith(l.href);
+              const active =
+                l.href === "/"
+                  ? pathname === "/"
+                  : pathname?.startsWith(l.href);
               const Icon = l.icon;
               const content = (
                 <span
@@ -132,20 +133,9 @@ export default function Sidebar() {
               );
               return (
                 <li key={l.href}>
-                  {l.external ? (
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setOpen(false)}
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    <Link href={l.href} onClick={() => setOpen(false)}>
-                      {content}
-                    </Link>
-                  )}
+                  <Link href={l.href} onClick={() => setOpen(false)}>
+                    {content}
+                  </Link>
                 </li>
               );
             })}

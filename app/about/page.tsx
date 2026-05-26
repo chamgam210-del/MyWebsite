@@ -10,32 +10,39 @@ export const metadata = {
 const sections = [
   {
     n: "01",
-    title: "What I build",
-    body: "AI assistants, voice-first apps, local LLM experiments, RAG applications, Android apps, and business automation tools. I gravitate toward products that combine multiple disciplines — voice + vision, mobile + AI, scraping + scheduling — where the interesting work happens at the seams.",
+    title: "Day job",
+    body: "I'm a Software Engineer II at Oliver Wyman Vector in Toronto, working across the full stack on Java, Spring Boot, React, Node, and SQL. My focus is modernizing legacy systems, building new features end-to-end, and bringing generative AI into the engineering workflow — for code, documentation, and internal automation.",
   },
   {
     n: "02",
-    title: "How I work",
-    body: "I prototype quickly, then harden what matters. I bias toward shipping a working v1 in front of a real user over a perfect spec. I prefer drafts over auto-actions, on-device over cloud when feasible, and clear UX over clever architecture.",
+    title: "What I build on the side",
+    body: "AI assistants, voice-first apps, local LLM experiments, RAG applications, Android apps, and business automation tools. I gravitate toward products that combine multiple disciplines — voice + vision, mobile + AI, scraping + scheduling — where the interesting work happens at the seams.",
   },
   {
     n: "03",
-    title: "Current focus",
-    body: "On-device AI on Android (wake word, local LLMs, streaming voice), RAG and agent workflows that solve actual operational pain, and small-business automation that respects existing workflows instead of forcing change.",
+    title: "How I work",
+    body: "I prototype quickly, then harden what matters. I bias toward shipping a working v1 in front of a real user over a perfect spec. I prefer drafts over auto-actions, on-device over cloud when feasible, and clear UX over clever architecture. Agile / JIRA in the day job, fast iteration on personal projects.",
   },
   {
     n: "04",
-    title: "Why I build",
-    body: "Most of my projects start when someone I know says \u201cI keep dealing with X.\u201d I like turning that frustration into a working tool \u2014 small, focused, and useful \u2014 even when it doesn't ship publicly.",
+    title: "Background",
+    body: "Bachelor of Engineering in Industrial Engineering from the University of Toronto (2017–2021), with deep coursework in machine learning (APS360) and integrated system design. Started in QA at AeroSoft Systems, moved into software engineering, and have grown into AI integration leadership through the company's transition into Oliver Wyman Vector.",
+  },
+  {
+    n: "05",
+    title: "Current focus",
+    body: "On-device AI on Android (wake word, local LLMs, streaming voice), RAG and agent workflows that solve actual operational pain, and small-business automation that respects existing workflows instead of forcing change.",
   },
 ];
 
 const techGroups = [
-  { label: "Languages", items: ["Kotlin", "TypeScript", "Python", "JavaScript", "C/C++ (JNI)"] },
+  { label: "Languages", items: ["Java", "TypeScript", "JavaScript", "Python", "Kotlin", "SQL", "HTML", "C/C++ (JNI)"] },
+  { label: "Backend / Enterprise", items: ["Spring Boot", "Node.js", "FastAPI", "Flask", "REST APIs", "SQL databases"] },
+  { label: "Web", items: ["Next.js", "React", "Tailwind CSS"] },
   { label: "Mobile", items: ["Jetpack Compose", "Material 3", "Room", "Hilt", "DataStore", "CameraX", "Foreground services"] },
-  { label: "Web", items: ["Next.js", "React", "Tailwind CSS", "FastAPI", "Flask", "Node.js"] },
-  { label: "AI / ML", items: ["OpenAI API", "Whisper", "GPT-4o-mini", "llama.cpp", "Qwen / local LLMs", "RAG", "ChromaDB", "Embeddings", "ML Kit"] },
-  { label: "Tooling", items: ["GitHub", "Vercel", "Docker", "Gradle", "Android Studio", "ADB", "Tailscale", "Firecrawl", "MCP"] },
+  { label: "AI / ML", items: ["OpenAI API", "Whisper", "GPT-4o-mini", "llama.cpp", "Qwen / local LLMs", "RAG", "ChromaDB", "Embeddings", "TensorFlow", "ML Kit"] },
+  { label: "QA / Testing", items: ["Selenium", "Test Automation", "Manual Testing"] },
+  { label: "Tooling & Process", items: ["Git / GitHub", "JIRA", "Agile", "Vercel", "Docker", "Gradle", "Android Studio", "ADB", "Firecrawl", "MCP"] },
 ];
 
 export default function AboutPage() {
@@ -47,18 +54,23 @@ export default function AboutPage() {
             00 — About
           </div>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl italic leading-[0.95] tracking-tightest text-ink sm:text-7xl">
-            I build useful products at the seams of{" "}
+            Software Engineer building useful products at the seams of{" "}
             <span className="text-accent">AI</span>, mobile, and automation.
           </h1>
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ink-dim">
-            I like turning ideas into prototypes and prototypes into real products.
-            My work spans AI assistants, voice-first apps, local LLM experiments,
-            RAG applications, mobile apps, and business automation tools — usually
-            in service of a real user with a real problem.
+            I&rsquo;m Chamath Guruge — a full-stack Software Engineer at{" "}
+            <span className="text-ink">Oliver Wyman Vector</span> in Toronto, specializing in
+            AI-driven solutions. I build and modernize Java web applications, integrate generative
+            AI into the engineering workflow, and on the side I ship Android apps, RAG systems, and
+            voice-first tools.
           </p>
+          <div className="mt-8 font-mono text-[11px] uppercase tracking-widest text-ink-mute">
+            Markham, Ontario · Canada
+          </div>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/projects" icon>See work</ButtonLink>
-            <ButtonLink href="/contact" variant="secondary">Get in touch</ButtonLink>
+            <ButtonLink href="/resume" variant="secondary">Resume</ButtonLink>
+            <ButtonLink href="/contact" variant="ghost">Get in touch</ButtonLink>
           </div>
         </div>
       </section>

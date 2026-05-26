@@ -24,22 +24,22 @@ const serif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Chamath | Software Developer & AI Builder",
+  title: "Chamath Guruge | Software Engineer & AI Builder",
   description:
-    "Portfolio of Chamath, a software developer building AI-powered Android apps, automation tools, local AI assistants, RAG systems, and full-stack products.",
+    "Chamath Guruge — Software Engineer II at Oliver Wyman Vector. Full-stack Java/Spring/React + AI integration. Building Android apps, RAG systems, and automation tools.",
   metadataBase: new URL("https://chamath.dev"),
   openGraph: {
-    title: "Chamath | Software Developer & AI Builder",
+    title: "Chamath Guruge | Software Engineer & AI Builder",
     description:
-      "Portfolio of Chamath, a software developer building AI-powered Android apps, automation tools, local AI assistants, RAG systems, and full-stack products.",
+      "Software Engineer II at Oliver Wyman Vector. Full-stack development + generative AI integration. Markham, ON.",
     type: "website",
     images: ["/og-image.svg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chamath | Software Developer & AI Builder",
+    title: "Chamath Guruge | Software Engineer & AI Builder",
     description:
-      "AI-powered Android apps, automation tools, local AI assistants, RAG systems, and full-stack products.",
+      "Full-stack Java/Spring/React engineer integrating AI into how teams ship software.",
     images: ["/og-image.svg"],
   },
 };
