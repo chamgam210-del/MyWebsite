@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ShieldCheck, Github, Lock, Mail } from "lucide-react";
 import { getAllSlugs, getProject } from "@/lib/projects";
+import type { LinkKind } from "@/lib/projects";
 import TechBadge from "@/components/TechBadge";
 import ButtonLink from "@/components/ButtonLink";
 import MediaSlot from "@/components/MediaSlot";
@@ -19,6 +20,13 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
+const linkLabel: Record<LinkKind, { text: string; icon: typeof Lock }> = {
+  "private-repo": { text: "Private repo", icon: Lock },
+  "demo-on-request": { text: "Demo available on request", icon: Mail },
+  "case-study-only": { text: "Case study only", icon: ShieldCheck },
+  public: { text: "Public", icon: Github },
+};
+
 export default function ProjectDetail({
   params,
 }: {
@@ -30,6 +38,15 @@ export default function ProjectDetail({
   const isTummy = project.slug === "tummy-tracker";
   const screenshotSlots = project.mediaSlots.screenshots;
   const screenshots = project.media.screenshots;
+  const access = linkLabel[project.linkKind];
+  const AccessIcon = access.icon;
+
+  const snapshotCards = [
+    { label: "Role", value: project.snapshot.role },
+    { label: "Platform", value: project.snapshot.platform },
+    { label: "Status", value: project.snapshot.status },
+    { label: "Core AI", value: project.snapshot.coreAi },
+  ];
 
   return (
     <article>
@@ -61,13 +78,52 @@ export default function ProjectDetail({
             {project.tagline}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-1.5">
-            {project.techStack.map((t) => (
-              <TechBadge key={t}>{t}</TechBadge>
-            ))}
+          {/* Access / link state */}
+          <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-bg-soft px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+            <AccessIcon className="h-3 w-3 text-accent" />
+            {access.text}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 inline-flex items-center gap-1 text-accent hover:underline"
+              >
+                GitHub <ArrowUpRight className="h-3 w-3" />
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 inline-flex items-center gap-1 text-accent hover:underline"
+              >
+                Demo <ArrowUpRight className="h-3 w-3" />
+              </a>
+            )}
           </div>
         </div>
       </header>
+
+      {/* SNAPSHOT CARDS */}
+      <section className="border-b border-white/[0.06]">
+        <div className="mx-auto max-w-6xl px-6 py-12 sm:px-10">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {snapshotCards.map((c) => (
+              <div
+                key={c.label}
+                className="rounded-2xl border border-white/[0.08] bg-bg-card p-5"
+              >
+                <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+                  {c.label}
+                </div>
+                <div className="mt-3 text-base text-ink">{c.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* HERO MEDIA */}
       <section className="border-b border-white/[0.06]">
@@ -81,16 +137,16 @@ export default function ProjectDetail({
         </div>
       </section>
 
-      {/* PROBLEM / SOLUTION */}
+      {/* SITUATION / WHAT I BUILT */}
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            01 — Why it exists
+            01 — Situation
           </div>
           <div className="mt-10 grid gap-12 sm:grid-cols-2">
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-                Problem
+                Situation
               </div>
               <p className="mt-4 font-serif text-2xl italic leading-snug text-ink">
                 {project.problem}
@@ -98,7 +154,7 @@ export default function ProjectDetail({
             </div>
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-accent">
-                Solution
+                What I built
               </div>
               <p className="mt-4 text-lg leading-relaxed text-ink-dim">
                 {project.solution}
@@ -112,12 +168,12 @@ export default function ProjectDetail({
         </div>
       </section>
 
-      {/* VIDEO */}
+      {/* PRODUCT WALKTHROUGH (video) */}
       {project.mediaSlots.video && (
         <section className="border-b border-white/[0.06]">
           <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
             <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-              02 — Walkthrough
+              02 — Product walkthrough
             </div>
             <div className="mt-8">
               <MediaSlot
@@ -132,7 +188,7 @@ export default function ProjectDetail({
         </section>
       )}
 
-      {/* SCREENSHOTS */}
+      {/* SCREENS */}
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="flex items-baseline justify-between">
@@ -155,10 +211,23 @@ export default function ProjectDetail({
               />
             ))}
           </div>
+        </div>
+      </section>
 
-          <p className="mt-8 font-mono text-[11px] text-ink-mute">
-            Drop real screenshots in <span className="text-accent">/public/projects/{project.slug}/</span> and they'll appear here.
-          </p>
+      {/* TECHNICAL HIGHLIGHT */}
+      <section className="border-b border-white/[0.06]">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+            04 — Technical highlight
+          </div>
+          <div className="mt-8 rounded-2xl border border-accent/30 bg-bg-card p-8 sm:p-10">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-accent">
+              The interesting bit
+            </div>
+            <p className="mt-4 max-w-3xl font-serif text-2xl italic leading-snug text-ink sm:text-3xl">
+              {project.techHighlight}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -166,7 +235,7 @@ export default function ProjectDetail({
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            04 — Features
+            05 — Features
           </div>
           <ul className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
             {project.features.map((f, i) => (
@@ -184,11 +253,34 @@ export default function ProjectDetail({
         </div>
       </section>
 
+      {/* TECH STACK — grouped */}
+      <section className="border-b border-white/[0.06]">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+            06 — Tech stack
+          </div>
+          <div className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+            {project.techGroups.map((g) => (
+              <div key={g.label} className="grid grid-cols-12 items-baseline gap-4 py-5">
+                <span className="col-span-12 font-mono text-[11px] uppercase tracking-widest text-ink-mute sm:col-span-3">
+                  {g.label}
+                </span>
+                <div className="col-span-12 flex flex-wrap gap-1.5 sm:col-span-9">
+                  {g.items.map((t) => (
+                    <TechBadge key={t}>{t}</TechBadge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ARCHITECTURE */}
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            05 — Architecture
+            07 — Architecture
           </div>
           <dl className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
             {project.architecture.map((a) => (
@@ -225,7 +317,7 @@ export default function ProjectDetail({
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            06 — What was hard
+            08 — Challenges
           </div>
           <ol className="mt-10 grid gap-6 sm:grid-cols-2">
             {project.challenges.map((c, i) => (
@@ -240,17 +332,27 @@ export default function ProjectDetail({
         </div>
       </section>
 
-      {/* OUTCOME */}
+      {/* OUTCOME — 3 concrete cards */}
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10">
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            07 — Outcome
+            09 — Outcome
           </div>
-          <blockquote className="mt-8 max-w-4xl font-serif text-3xl italic leading-snug tracking-tightest text-ink sm:text-5xl">
-            <span className="text-accent">"</span>
-            {project.outcome}
-            <span className="text-accent">"</span>
-          </blockquote>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {project.outcomes.map((o, i) => (
+              <div
+                key={o}
+                className="rounded-2xl border border-white/[0.08] bg-bg-card p-6"
+              >
+                <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <p className="mt-4 font-serif text-xl italic leading-snug text-ink">
+                  {o}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -259,7 +361,7 @@ export default function ProjectDetail({
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
           <div className="flex items-baseline gap-3 font-mono text-[10px] uppercase tracking-widest text-ink-mute">
             <ShieldCheck className="h-3 w-3" />
-            Privacy & safety
+            10 — Privacy & safety
           </div>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-dim">
             {project.privacyNotes}
@@ -283,7 +385,7 @@ export default function ProjectDetail({
             All work
           </Link>
           <ButtonLink href="/contact" icon>
-            Discuss this project
+            Discuss This Project
           </ButtonLink>
         </div>
       </section>

@@ -142,7 +142,7 @@ export default function ResumePage() {
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/resume.pdf" external variant="secondary">Download PDF</ButtonLink>
-            <ButtonLink href="/contact" icon>Get in touch</ButtonLink>
+            <ButtonLink href="/contact" icon>Contact Me</ButtonLink>
           </div>
         </div>
       </section>

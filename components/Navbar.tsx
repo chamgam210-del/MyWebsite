@@ -7,10 +7,11 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { clsx } from "@/lib/cn";
 
 const links = [
-  { href: "/", label: "Index", num: "00" },
+  { href: "/", label: "Home", num: "00" },
   { href: "/projects", label: "Work", num: "01" },
   { href: "/about", label: "About", num: "02" },
-  { href: "/contact", label: "Contact", num: "03" },
+  { href: "/resume", label: "Resume", num: "03" },
+  { href: "/contact", label: "Contact", num: "04" },
 ];
 
 export default function Navbar() {
@@ -49,14 +50,12 @@ export default function Navbar() {
           })}
         </nav>
 
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-ink-dim transition hover:text-ink sm:inline-flex"
+        <Link
+          href="/contact"
+          className="hidden items-center gap-1.5 rounded-full border border-accent/40 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-widest text-accent transition hover:bg-accent hover:text-bg sm:inline-flex"
         >
-          Resume <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
+          Contact Me <ArrowUpRight className="h-3.5 w-3.5" />
+        </Link>
 
         <button
           className="rounded-md p-2 text-ink-dim hover:bg-white/5 sm:hidden"
@@ -84,14 +83,6 @@ export default function Navbar() {
                 <ArrowUpRight className="h-4 w-4 text-ink-mute" />
               </Link>
             ))}
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-baseline justify-between px-1 py-3 font-mono text-xs uppercase tracking-widest text-accent"
-            >
-              Resume <ArrowUpRight className="h-4 w-4" />
-            </a>
           </div>
         </div>
       )}

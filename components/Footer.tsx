@@ -10,6 +10,7 @@ const social = [
 const internal = [
   { href: "/projects", label: "Work" },
   { href: "/about", label: "About" },
+  { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -17,15 +18,21 @@ export default function Footer() {
   return (
     <footer className="mt-32 border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
-        <div className="flex items-end justify-between gap-6">
-          <h2 className="font-serif text-5xl italic leading-[0.95] tracking-tightest text-ink sm:text-7xl">
-            Let's build<br />something.
-          </h2>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <h2 className="font-serif text-5xl italic leading-[0.95] tracking-tightest text-ink sm:text-7xl">
+              Let&rsquo;s build<br />something<span className="text-accent">.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-dim">
+              Software engineer building Android apps, AI assistants, and
+              automation tools — from idea to working product.
+            </p>
+          </div>
           <Link
             href="/contact"
-            className="group hidden items-baseline gap-1.5 font-mono text-[11px] uppercase tracking-widest text-accent sm:inline-flex"
+            className="group inline-flex items-baseline gap-1.5 font-mono text-[11px] uppercase tracking-widest text-accent"
           >
-            Start a project
+            Contact Me
             <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
@@ -72,10 +79,13 @@ export default function Footer() {
               Colophon
             </p>
             <p className="mt-3 text-sm text-ink-dim">
-              Next.js · Tailwind · Vercel
+              Built with Next.js · Tailwind · Vercel
             </p>
-            <p className="mt-1 font-mono text-[10px] text-ink-mute">
-              © {new Date().getFullYear()} Chamath
+            <p className="mt-1 text-xs text-ink-mute">
+              Set in Instrument Serif &amp; JetBrains Mono
+            </p>
+            <p className="mt-3 font-mono text-[10px] text-ink-mute">
+              © {new Date().getFullYear()} Chamath Guruge
             </p>
           </div>
         </div>

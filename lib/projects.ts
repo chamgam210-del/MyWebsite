@@ -9,6 +9,9 @@ export type MediaItem = {
   type?: "image" | "video";
 };
 
+export type TechGroup = { label: string; items: string[] };
+export type LinkKind = "private-repo" | "demo-on-request" | "case-study-only" | "public";
+
 export type Project = {
   title: string;
   slug: string;
@@ -18,6 +21,23 @@ export type Project = {
   longDescription: string;
   problem: string;
   solution: string;
+  /** One-sentence framing of the problem (used on home page block). */
+  briefProblem: string;
+  /** One-sentence framing of what was built. */
+  briefBuilt: string;
+  /** 3 concrete outcome bullets (replaces single quote). */
+  outcomes: string[];
+  /** One paragraph highlighting the most interesting technical decision. */
+  techHighlight: string;
+  /** Snapshot/ownership cards shown at top of detail page and home block. */
+  snapshot: {
+    role: string;
+    platform: string;
+    status: string;
+    coreAi: string;
+  };
+  /** Tech grouped by category for cleaner rendering. */
+  techGroups: TechGroup[];
   techStack: string[];
   features: string[];
   architecture: { area: string; description: string }[];
@@ -27,6 +47,8 @@ export type Project = {
   privacyNotes: string;
   githubUrl?: string;
   demoUrl?: string;
+  /** How to present external links: hides empty buttons gracefully. */
+  linkKind: LinkKind;
   status: string;
   category: string;
   highlights: string[];
@@ -67,6 +89,30 @@ export const projects: Project[] = [
       "Solo mechanics often run their entire business through text messages, memory, and scattered notes. Customer names, vehicle details, repair requests, appointment times, prices, and parts information can easily get lost.",
     solution:
       "WrenchDesk keeps the mechanic in control while reducing mental load. It does not auto-book or auto-send messages. Instead, it creates drafts the mechanic can Confirm, Edit, or Ignore.",
+    briefProblem:
+      "A solo mechanic runs his entire business through text messages — customer details, vehicles, appointments, and parts get lost in the chat thread.",
+    briefBuilt:
+      "An Android assistant that reads incoming SMS, extracts job details with an LLM, drafts appointments and replies, and keeps a searchable customer history — all draft-first, never auto-sending.",
+    outcomes: [
+      "Reduces repeated typing across customer conversations",
+      "Makes job and vehicle history instantly searchable",
+      "Keeps the mechanic in control with draft-first AI actions",
+    ],
+    techHighlight:
+      "Designed a draft-first AI workflow so the assistant can organize customer messages without taking risky actions like auto-booking or auto-sending — every AI output goes through Confirm / Edit / Ignore.",
+    snapshot: {
+      role: "Sole developer / product builder",
+      platform: "Android",
+      status: "Private prototype",
+      coreAi: "Message understanding + reply drafting",
+    },
+    linkKind: "private-repo",
+    techGroups: [
+      { label: "Core", items: ["Kotlin", "Jetpack Compose", "Material 3", "Room", "DataStore"] },
+      { label: "AI", items: ["OpenAI gpt-4o-mini", "Prompt templates"] },
+      { label: "Android", items: ["SMS APIs", "NotificationListenerService", "Foreground service", "Exact alarms"] },
+      { label: "Tools", items: ["Firecrawl", "OkHttp", "kotlinx.serialization", "Coroutines"] },
+    ],
     techStack: [
       "Kotlin",
       "Jetpack Compose",
@@ -148,6 +194,30 @@ export const projects: Project[] = [
       "Food and symptom tracking is tedious, and simple food diaries often fail because users forget details or logs become too time-consuming. Basic correlation also creates misleading results when it ignores digestion timing.",
     solution:
       "Tummy Tracker makes logging fast with voice input and one-tap symptom buttons. Its analytics engine uses different time windows for different symptoms, then weighs likely food triggers based on timing proximity.",
+    briefProblem:
+      "Food and symptom journaling is tedious, and naive same-day correlation produces misleading triggers because it ignores how long different symptoms actually take to appear.",
+    briefBuilt:
+      "A native Android app for voice meal logging and one-tap symptom tracking, with a correlation engine that uses symptom-specific digestive transit windows to score likely food triggers.",
+    outcomes: [
+      "Makes food tracking faster with voice-first logging",
+      "Gives timing-aware trigger insights, not naive same-day matches",
+      "Frames every insight as exploratory, not medical advice",
+    ],
+    techHighlight:
+      "Built symptom-specific correlation windows instead of naive same-day matching, so trigger scoring considers digestion timing — a stomach-ache and a 48-hour reaction are weighed against different meal windows.",
+    snapshot: {
+      role: "Sole developer / product builder",
+      platform: "Android",
+      status: "Native Android prototype",
+      coreAi: "Voice transcription + trigger analysis",
+    },
+    linkKind: "demo-on-request",
+    techGroups: [
+      { label: "Core", items: ["Kotlin 1.9.24", "Jetpack Compose", "Material 3", "Room", "Hilt", "DataStore"] },
+      { label: "AI", items: ["OpenAI whisper-1", "OpenAI gpt-4o-mini"] },
+      { label: "Android", items: ["MediaRecorder", "Foreground Service", "AlarmManager"] },
+      { label: "Tools", items: ["Retrofit", "Moshi", "OkHttp"] },
+    ],
     techStack: [
       "Kotlin 1.9.24",
       "Jetpack Compose",
@@ -231,6 +301,30 @@ export const projects: Project[] = [
       "Most AI assistants depend heavily on cloud services and are not designed for persistent, private, ambient context. Building a useful personal assistant requires wake word activation, low-latency voice interaction, local inference, memory, vision, interruption handling, and reliable mobile background execution.",
     solution:
       "Casper explores an offline-first architecture where the phone runs the core assistant locally. It combines wake word detection, streaming STT, local LLM inference, TTS, ambient memory, notification recall, and optional laptop-assisted vision.",
+    briefProblem:
+      "Most AI assistants depend on the cloud and lack persistent, private, ambient context — and shipping one fully on-device on consumer Android hardware means fighting memory, latency, and background-service limits.",
+    briefBuilt:
+      "An always-listening, offline-first AI companion for a Samsung Galaxy A52 5G — wake word, streaming voice, local Qwen LLM via llama.cpp/JNI, TTS, ambient memory, and optional laptop VLM offload over Tailscale.",
+    outcomes: [
+      "Demonstrates a fully local voice assistant pipeline on consumer Android",
+      "Tests ambient memory and passive observation under real-world constraints",
+      "Supports laptop-assisted VLM debugging via Tailscale offload",
+    ],
+    techHighlight:
+      "Integrated wake word detection, streaming STT, local LLM inference, TTS, barge-in handling, and ambient memory under Android background-service constraints — only one heavy model resident at a time, careful JNI memory management, and a Flask monitor for live debugging.",
+    snapshot: {
+      role: "Sole developer / experimental builder",
+      platform: "Android + laptop proxy",
+      status: "Experimental prototype",
+      coreAi: "Local LLM + wake word + ambient memory",
+    },
+    linkKind: "case-study-only",
+    techGroups: [
+      { label: "Core", items: ["Kotlin", "Jetpack Compose", "Hilt", "Room"] },
+      { label: "AI", items: ["llama.cpp", "Qwen3-0.6B Q4_K_M", "Picovoice Porcupine", "ML Kit", "Ollama (laptop VLM)"] },
+      { label: "Android", items: ["CameraX", "SpeechRecognizer", "TextToSpeech", "NotificationListenerService", "Foreground service"] },
+      { label: "Native / Infra", items: ["JNI", "NDK", "CMake", "Python Flask", "Tailscale"] },
+    ],
     techStack: [
       "Kotlin",
       "Jetpack Compose",

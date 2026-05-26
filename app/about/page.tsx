@@ -16,17 +16,22 @@ const sections = [
   {
     n: "02",
     title: "How I work",
-    body: "I prototype quickly, then harden what matters. I bias toward shipping a working v1 in front of a real user over a perfect spec. I prefer drafts over auto-actions, on-device over cloud when feasible, and clear UX over clever architecture.",
+    body: "Prototype fast, harden what matters. Working v1 over perfect spec. Drafts over auto-actions, on-device over cloud when it makes sense, clear UX over clever architecture.",
   },
   {
     n: "03",
     title: "Background",
-    body: "Bachelor of Engineering in Industrial Engineering from the University of Toronto (2017–2021), with deep coursework in machine learning (APS360) and integrated system design. Started in QA at AeroSoft Systems, moved into software engineering, and have grown into AI integration leadership through the company's transition into Oliver Wyman Vector.",
+    body: "Industrial Engineering at the University of Toronto (2017–2021), with machine-learning coursework in APS360. Started in QA at AeroSoft Systems, moved into software engineering, and now lead AI integration work at Oliver Wyman Vector.",
   },
   {
     n: "04",
     title: "Current focus",
-    body: "On-device AI on Android (wake word, local LLMs, streaming voice), RAG and agent workflows that solve actual operational pain, and small-business automation that respects existing workflows instead of forcing change.",
+    body: "On-device AI on Android (wake word, local LLMs, streaming voice), RAG and agent workflows that solve real operational pain, and small-business automation that respects existing workflows.",
+  },
+  {
+    n: "05",
+    title: "What I’m looking for",
+    body: "I’m interested in AI product engineering roles, Android apps with AI features, small-business automation tools, voice/vision assistants, local AI experiments, and freelance MVP/prototype builds.",
   },
 ];
 
@@ -49,23 +54,22 @@ export default function AboutPage() {
             00 — About
           </div>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl italic leading-[0.95] tracking-tightest text-ink sm:text-7xl">
-            Software Engineer building useful products at the seams of{" "}
-            <span className="text-accent">AI</span>, mobile, and automation.
+            Software engineer who ships practical{" "}
+            <span className="text-accent">AI</span> products.
           </h1>
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ink-dim">
-            I&rsquo;m Chamath Guruge — a full-stack Software Engineer at{" "}
-            <span className="text-ink">Oliver Wyman Vector</span> in Toronto, specializing in
-            AI-driven solutions. I build and modernize Java web applications, integrate generative
-            AI into the engineering workflow, and on the side I ship Android apps, RAG systems, and
-            voice-first tools.
+            I’m Chamath Guruge — I build Android apps, AI assistants, and
+            automation tools end-to-end. Engineering plus QA roots, a bias for
+            shipping working v1s over polished specs, and a focus on AI / mobile
+            / automation.
           </p>
           <div className="mt-8 font-mono text-[11px] uppercase tracking-widest text-ink-mute">
             Markham, Ontario · Canada
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="/projects" icon>See work</ButtonLink>
-            <ButtonLink href="/resume" variant="secondary">Resume</ButtonLink>
-            <ButtonLink href="/contact" variant="ghost">Get in touch</ButtonLink>
+            <ButtonLink href="/contact" icon>Contact Me</ButtonLink>
+            <ButtonLink href="/projects" variant="secondary">View Work</ButtonLink>
+            <ButtonLink href="/resume" variant="ghost">Resume</ButtonLink>
           </div>
         </div>
       </section>
@@ -95,7 +99,7 @@ export default function AboutPage() {
       <section className="border-b border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
           <div className="flex items-baseline gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">05</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">06</span>
             <h2 className="font-serif text-3xl italic tracking-tightest text-ink sm:text-4xl">
               Stack
             </h2>

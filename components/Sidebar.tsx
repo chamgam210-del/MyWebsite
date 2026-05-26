@@ -18,9 +18,9 @@ import { clsx } from "@/lib/cn";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/projects", label: "Work", icon: Briefcase },
   { href: "/about", label: "About", icon: User },
   { href: "/resume", label: "Resume", icon: FileText },
-  { href: "/projects", label: "Portfolio", icon: Briefcase },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
 
