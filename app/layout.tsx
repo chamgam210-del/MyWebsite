@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 
 const sans = Inter({
@@ -55,9 +55,11 @@ export default function RootLayout({
       className={`${sans.variable} ${mono.variable} ${serif.variable}`}
     >
       <body className="min-h-screen bg-bg font-sans text-ink antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <Sidebar />
+        <div className="lg:pl-72">
+          <main className="pt-14 lg:pt-0">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

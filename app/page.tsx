@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Download, Mail } from "lucide-react";
 import ButtonLink from "@/components/ButtonLink";
 import TechBadge from "@/components/TechBadge";
+import TypedText from "@/components/TypedText";
 import { projects } from "@/lib/projects";
 
 const skillGroups = [
@@ -15,31 +16,45 @@ const skillGroups = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO — editorial, typographic */}
-      <section className="border-b border-white/[0.06]">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
-          <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-            <span className="inline-flex h-1.5 w-1.5 animate-pulseSoft rounded-full bg-accent" />
-            <span>Available · AI / Mobile / Automation</span>
+      {/* HERO — full-bleed image with overlay */}
+      <section className="relative isolate min-h-[calc(100vh-3.5rem)] lg:min-h-screen">
+        {/* Background image (drop /public/hero.jpg to replace) */}
+        <div
+          className="absolute inset-0 -z-10 overflow-hidden bg-bg-soft bg-cover bg-center"
+          style={{ backgroundImage: "url(/hero.jpg)" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" />
+        </div>
+
+        {/* Drop-photo hint (only visible if no /public/hero.jpg yet) */}
+        <div className="pointer-events-none absolute right-6 top-6 z-10 hidden font-mono text-[10px] uppercase tracking-widest text-ink-mute sm:block">
+          drop photo → <span className="text-accent">public/hero.jpg</span>
+        </div>
+
+        <div className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col justify-center px-8 py-24 sm:px-16 lg:min-h-screen lg:px-24">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+            <span className="inline-flex items-center gap-2">
+              <span className="inline-flex h-1.5 w-1.5 animate-pulseSoft rounded-full bg-accent" />
+              Available · AI / Mobile / Automation
+            </span>
           </div>
 
-          <h1 className="mt-8 font-serif text-[15vw] italic leading-[0.85] tracking-tightest text-ink sm:text-[8rem] lg:text-[10rem]">
+          <h1 className="mt-6 font-serif text-7xl italic leading-[0.9] tracking-tightest text-ink sm:text-8xl lg:text-9xl">
             Chamath<span className="text-accent">.</span>
           </h1>
 
-          <div className="mt-10 grid gap-12 sm:grid-cols-[1fr_auto] sm:items-end">
-            <p className="max-w-xl text-lg leading-relaxed text-ink-dim sm:text-xl">
-              Software developer building <span className="text-ink">AI-powered apps</span>,
-              {" "}automation tools, and full-stack products — practical software that
-              turns ideas into shipped work.
-            </p>
-            <div className="font-mono text-[11px] uppercase tracking-widest text-ink-mute">
-              <div>Colombo / Remote</div>
-              <div className="mt-1">{new Date().getFullYear()}</div>
-            </div>
+          <div className="mt-6 text-2xl text-ink-dim sm:text-3xl">
+            <TypedText words={["a Software Developer", "an AI Builder", "an Android Engineer", "an Automation Hacker"]} />
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center gap-3">
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-dim sm:text-lg">
+            I build practical software that turns ideas into working products —
+            AI assistants, Android apps, automation tools, RAG systems, and
+            voice-first experiences.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <ButtonLink href="/projects" icon>View Work</ButtonLink>
             <ButtonLink href="/resume.pdf" external variant="secondary">
               <Download className="h-4 w-4" />
