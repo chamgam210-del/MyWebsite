@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const social = [
-  { label: "Email", href: "mailto:your-email@example.com" },
-  { label: "GitHub", href: "https://github.com/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/" },
+  { label: "Email", href: "mailto:chamz_210@hotmail.com" },
+  { label: "GitHub", href: "https://github.com/chamgam210-del" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/chamath-guruge-3442a8127" },
 ];
 
 const internal = [

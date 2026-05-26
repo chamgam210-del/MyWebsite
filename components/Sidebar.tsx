@@ -25,9 +25,9 @@ const links = [
 ];
 
 const socials = [
-  { href: "https://www.linkedin.com/in/chamath-guruge/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/chamath-guruge-3442a8127", icon: Linkedin, label: "LinkedIn" },
   { href: "https://github.com/chamgam210-del", icon: Github, label: "GitHub" },
-  { href: "mailto:chamath@example.com", icon: Mail, label: "Email" },
+  { href: "mailto:chamz_210@hotmail.com", icon: Mail, label: "Email" },
 ];
 
 export default function Sidebar() {

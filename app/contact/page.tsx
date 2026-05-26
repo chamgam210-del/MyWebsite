@@ -11,14 +11,14 @@ export default function ContactPage() {
     e.preventDefault();
     const subject = encodeURIComponent(`Portfolio inquiry from ${form.name}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:chamz_210@hotmail.com?subject=${subject}&body=${body}`;
     setSent(true);
   }
 
   const channels = [
-    { label: "Email", value: "your-email@example.com", href: "mailto:your-email@example.com" },
+    { label: "Email", value: "chamz_210@hotmail.com", href: "mailto:chamz_210@hotmail.com" },
     { label: "GitHub", value: "github.com/your-handle", href: "https://github.com/" },
-    { label: "LinkedIn", value: "linkedin.com/in/your-handle", href: "https://www.linkedin.com/" },
+    { label: "LinkedIn", value: "linkedin.com/in/chamath-guruge-3442a8127", href: "https://www.linkedin.com/in/chamath-guruge-3442a8127" },
   ];
 
   return (
@@ -94,9 +94,9 @@ export default function ContactPage() {
                   Your mail client should have opened. If it didn't, email{" "}
                   <a
                     className="text-accent underline-offset-4 hover:underline"
-                    href="mailto:your-email@example.com"
+                    href="mailto:chamz_210@hotmail.com"
                   >
-                    your-email@example.com
+                    chamz_210@hotmail.com
                   </a>
                   .
                 </p>
