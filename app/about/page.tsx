@@ -10,26 +10,21 @@ export const metadata = {
 const sections = [
   {
     n: "01",
-    title: "Day job",
-    body: "I'm a Software Engineer II at Oliver Wyman Vector in Toronto, working across the full stack on Java, Spring Boot, React, Node, and SQL. My focus is modernizing legacy systems, building new features end-to-end, and bringing generative AI into the engineering workflow — for code, documentation, and internal automation.",
-  },
-  {
-    n: "02",
-    title: "What I build on the side",
+    title: "What I build",
     body: "AI assistants, voice-first apps, local LLM experiments, RAG applications, Android apps, and business automation tools. I gravitate toward products that combine multiple disciplines — voice + vision, mobile + AI, scraping + scheduling — where the interesting work happens at the seams.",
   },
   {
-    n: "03",
+    n: "02",
     title: "How I work",
-    body: "I prototype quickly, then harden what matters. I bias toward shipping a working v1 in front of a real user over a perfect spec. I prefer drafts over auto-actions, on-device over cloud when feasible, and clear UX over clever architecture. Agile / JIRA in the day job, fast iteration on personal projects.",
+    body: "I prototype quickly, then harden what matters. I bias toward shipping a working v1 in front of a real user over a perfect spec. I prefer drafts over auto-actions, on-device over cloud when feasible, and clear UX over clever architecture.",
   },
   {
-    n: "04",
+    n: "03",
     title: "Background",
     body: "Bachelor of Engineering in Industrial Engineering from the University of Toronto (2017–2021), with deep coursework in machine learning (APS360) and integrated system design. Started in QA at AeroSoft Systems, moved into software engineering, and have grown into AI integration leadership through the company's transition into Oliver Wyman Vector.",
   },
   {
-    n: "05",
+    n: "04",
     title: "Current focus",
     body: "On-device AI on Android (wake word, local LLMs, streaming voice), RAG and agent workflows that solve actual operational pain, and small-business automation that respects existing workflows instead of forcing change.",
   },

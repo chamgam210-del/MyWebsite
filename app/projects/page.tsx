@@ -48,32 +48,44 @@ export default function ProjectsPage() {
       </section>
 
       <section>
-        <ul className="mx-auto max-w-6xl divide-y divide-white/[0.06] border-b border-white/[0.06] px-6 sm:px-10">
-          {filtered.map((p) => (
-            <li key={p.slug}>
-              <Link
-                href={`/projects/${p.slug}`}
-                className="group grid grid-cols-12 items-baseline gap-4 py-8"
-              >
-                <span className="col-span-2 font-mono text-[11px] uppercase tracking-widest text-ink-mute">
-                  {p.year}
-                </span>
-                <span className="col-span-10 font-serif text-4xl italic tracking-tightest text-ink transition group-hover:text-accent sm:col-span-5 sm:text-5xl">
-                  {p.title}
-                </span>
-                <span className="col-span-12 text-sm text-ink-dim sm:col-span-4">
-                  {p.category}
-                </span>
-                <span className="col-span-12 inline-flex items-baseline justify-start gap-1.5 font-mono text-[11px] uppercase tracking-widest text-ink-mute group-hover:text-accent sm:col-span-1 sm:justify-end">
-                  View <ArrowUpRight className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {filtered.length === 0 && (
-          <p className="py-16 text-center text-ink-mute">No projects in this category yet.</p>
-        )}
+        <div className="mx-auto max-w-6xl px-6 pb-24 sm:px-10">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((p) => {
+              const cover = p.media?.hero?.src ?? p.mediaSlots.hero;
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/projects/${p.slug}`}
+                  className="group relative block overflow-hidden rounded-2xl border border-white/[0.08] bg-bg-card transition hover:border-accent/40"
+                >
+                  <div
+                    className="relative aspect-[4/5] w-full bg-bg-soft bg-cover bg-center transition duration-500 group-hover:scale-[1.02]"
+                    style={{ backgroundImage: `url(${cover})` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <div className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
+                        {p.year} · {p.category}
+                      </div>
+                      <div className="mt-2 font-serif text-3xl italic leading-tight tracking-tightest text-ink transition group-hover:text-accent">
+                        {p.title}
+                      </div>
+                      <div className="mt-2 line-clamp-2 text-sm text-ink-dim">
+                        {p.tagline}
+                      </div>
+                    </div>
+                    <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full border border-white/15 bg-bg/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-ink backdrop-blur">
+                      View <ArrowUpRight className="h-3 w-3" />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          {filtered.length === 0 && (
+            <p className="py-16 text-center text-ink-mute">No projects in this category yet.</p>
+          )}
+        </div>
       </section>
     </>
   );
